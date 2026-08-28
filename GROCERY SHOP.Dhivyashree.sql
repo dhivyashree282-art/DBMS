@@ -1,0 +1,87 @@
+DROP DATABASE GROCERY_SHOP;
+CREATE DATABASE GROCERY_SHOP;
+
+USE GROCERY_SHOP;
+
+CREATE TABLE Category
+(
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(50)
+);
+
+CREATE TABLE Product
+(
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2),
+    Stock INT,
+    CategoryID INT,
+    FOREIGN KEY (CategoryID)
+    REFERENCES Category(CategoryID)
+);
+
+INSERT INTO Category VALUES
+(1, 'FRUITS'),
+(2, 'VEGETABLES'),
+(3, 'DAIRY PRODUCTS'),
+(4, 'GROCERY ITEMS'),
+(5, 'SNACKS'),
+(6, 'BEVERAGES');
+
+SELECT * FROM Category;
+
+INSERT INTO Product VALUES
+(101, 'APPLE', 180, 50, 1),
+(102, 'BANANA', 60, 80, 1),
+(103, 'ORANGE', 120, 40, 1),
+(104, 'MANGO', 150, 35, 1),
+(105, 'GRAPES', 100, 45, 1),
+
+(106, 'TOMATO', 50, 60, 2),
+(107, 'POTATO', 40, 70, 2),
+(108, 'ONION', 45, 65, 2),
+(109, 'CARROT', 60, 50, 2),
+(110, 'BEANS', 80, 40, 2),
+
+(111, 'MILK', 60, 50, 3),
+(112, 'CURD', 40, 45, 3),
+(113, 'BUTTER', 120, 30, 3),
+(114, 'CHEESE', 150, 25, 3),
+(115, 'PANEER', 100, 35, 3),
+
+(116, 'RICE', 500, 30, 4),
+(117, 'WHEAT FLOUR', 350, 35, 4),
+(118, 'SUGAR', 50, 60, 4),
+(119, 'SALT', 30, 70, 4),
+(120, 'COOKING OIL', 180, 40, 4),
+
+(121, 'BISCUITS', 40, 50, 5),
+(122, 'CHIPS', 30, 60, 5),
+(123, 'CHOCOLATE', 50, 45, 5),
+(124, 'CAKE', 250, 20, 5),
+(125, 'NOODLES', 70, 40, 5),
+
+(126, 'MINERAL WATER', 20, 80, 6),
+(127, 'FRUIT JUICE', 100, 40, 6),
+(128, 'SOFT DRINK', 60, 50, 6),
+(129, 'COFFEE', 150, 30, 6),
+(130, 'TEA POWDER', 200, 35, 6);
+
+SELECT * FROM Product;
+
+UPDATE Product
+SET Price = 200,
+    Stock = 55
+WHERE ProductID = 101;
+
+SELECT * FROM Product
+WHERE ProductID = 101;
+
+DELETE FROM Product
+WHERE ProductID = 108;
+
+DELETE FROM Product
+WHERE CategoryID = 5;
+
+SELECT * FROM Product
+ORDER BY CategoryID;
